@@ -33,15 +33,14 @@ describe('Store', () => {
 
     it('finds an object by id', done => {
         //create an object
-        const animal = {name: 'tommy'};
-        //after done creating -> findById
-        const createdAnimal = store.create(animal);
-        const foundAnimal = store.findById(createdAnimal._id, err => {
-
-            expect(foundAnimal).toEqual(createdAnimal);
-            done();
+        store.create({ name: 'tommy' }, (err, createdUncle) => {
+            
+            store.findById(createdAnimal._id, (err, foundAnimal) => {
+                expect(err).toBeFalsy();
+                expect(foundAnimal).toEqual({ name: 'tommy', _id: createdAnimal._id});
+                done();
+            });
         });
-        //after found check that it is the same one that we created
-        //then call done
+       
     });
-})
+});
