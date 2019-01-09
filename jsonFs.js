@@ -5,21 +5,29 @@ function readJSON(pathToFile, callback) {
     if(err) {
       return callback(err);
     }
-    // JSON.parse to create a JSON object from data
-    const json = JSON.parse(data);
-    // invoke callback(null, json)
-    callback(null, json);
+
+    try {
+      const json = JSON.parse(data);
+      callback(null, json);
+    } catch(err) {
+      callback(err);
+    }
   });
 }
 
 function writeJSON(pathToFile, obj, callback) {
-  const data = JSON.stringify(obj);
-  fs.writeFile(pathToFile, data, err => {
-    if(err) {
-      callback(err);
-    }
-    callback();
-  });
+  try {
+    const data = JSON.stringify(obj);
+    fs.writeFile(pathToFile, data, err => {
+      if(err) {
+        callback(err);
+      }
+      callback();
+    });
+
+  } catch(err) {
+    callback(err);
+  }
 }
 
 module.exports = { readJSON, writeJSON };
