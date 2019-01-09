@@ -17,9 +17,13 @@
     "url": "https://github.com/kristinhortsch/simple-database/issues"
   },
   "homepage": "https://github.com/kristinhortsch/simple-database#readme",
-  "dependencies": {},
+  "dependencies": {
+    "short-id": "0.1.0-1"
+  },
   "devDependencies": {
     "eslint": "^5.12.0",
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.3"
   }
 }

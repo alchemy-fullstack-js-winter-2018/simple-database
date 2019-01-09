@@ -1,13 +1,13 @@
 const fs = require('fs');
-const { readJSON } = require('./jsonFs');
+const { readJSON, writeJSON } = require('./jsonFs');
 
 describe('jsonFs', () => {
-  it('it can write json to a file', () => {
+  it('it can write json to a file', (done) => {
     //create an object
     const obj = {
-        name: "Roxy", 
-        age: 4, 
-        city: "Tualatin" 
+      name: 'Roxy', 
+      age: 4, 
+      city: 'Tualatin' 
     };
 
     //stringify object
@@ -24,6 +24,26 @@ describe('jsonFs', () => {
         //test that readJSON worked right
         expect(data).toEqual(obj);
         done();
+      });
+    });
+  });
+
+  describe('writeJSON', () => {
+    it('writes JSON to disk', (done) => {
+      //create an object to save
+      const obj = {
+        name: 'Roxy'
+      };
+
+      //invoke writeJSON(pathToFile, obj, err)
+      writeJSON('./testData/test2', obj, err => {
+        expect(err).toBeFalsy();
+      
+        readJSON('./testData/test2', (err, data) => {
+          expect(err).toBeFalsy();
+          expect(data).toEqual(obj);
+          done();
+        });
       });
     });
   });

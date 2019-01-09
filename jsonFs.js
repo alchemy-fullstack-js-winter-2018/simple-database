@@ -7,12 +7,32 @@ function readJSON(pathToFile, callback) {
     }
     //JSON.parse to create JSON object from data
     //invoke callback with no error
-    const result = JSON.parse(data);
-    callback(null, result);
+    try {
+      const result = JSON.parse(data);
+      callback(null, result);
+    }
+    catch(e) {
+      callback(e);
+    }
   });
-  callback(err, result);
+}
+
+function writeJSON(pathToFile, obj, callback) {
+  try {
+    const strObject = JSON.stringify(obj);
+    fs.writeFile(pathToFile, strObject, (err, data) => {
+      if(err) {
+        return callback(err);
+      }
+      callback(null, data);
+    });
+  }
+  catch(e) {
+    callback(e);
+  }
 }
 
 module.exports = {
-  readJSON
+  readJSON,
+  writeJSON
 };
