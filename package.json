@@ -21,5 +21,8 @@
   "devDependencies": {
     "eslint": "^5.12.0",
     "jest": "^23.6.0"
+  },
+  "dependencies": {
+    "short-id": "0.1.0-1"
   }
 }
