@@ -1,14 +1,19 @@
-const fs = require('fs'); 
+
+const fs = require('fs');
+const copy = require('./copy');
 
 describe('copy function', () => {
   afterEach(() => {
 
   });
   it('test coped filed', done => {
-    fs.readFile('./writing.txt', { encoding: 'utf8'}, (err, data) => {
-      expect(err).toBeUndefined();
-      expect(data).toBeEqual('I am writing');
+    copy('./writing.txt', 'destination.txt', (err)=> {
+      expect(err).toBeFalsy();
+      fs.readFile('./writing.txt',{ encoding: 'utf8' }, (err, data) => {
+        expect(err).toBeFalsy();
+        expect(data).toEqual('I am writing');
+        done();
+      });
     })
-    done();
   });
 });
