@@ -20,10 +20,4 @@ describe('copy function', () => {
       });
     });
   });
-  // it('throws an error if a file doesnt exist', (done) => {
-  //   fs.readFile('./message10.txt', { encoding: 'utf8' }, (err, data) => {
-  //     expect(err).toBeFalsy();
-  //     done();
-  //   });
-  // });
 });
