@@ -7,11 +7,11 @@ describe('copy function', () => {
   });
 
   it('copy file created', done => {
-    copy('./writing.txt', './writing-copy.txt', err => {
+    copy('./classwork/writing.txt', './classwork/writing-copy.txt', err => {
       expect(err).toBeFalsy();
-      fs.readFile('./writing-copy.txt', { encoding: 'utf8' }, (err, data) => {
+      fs.readFile('./classwork/writing-copy.txt', { encoding: 'utf8' }, (err, data) => {
         expect(err).toBeFalsy();
-        expect(data).toEqual('YELLOWWWWWW');
+        expect(data).toEqual('I am banana');
         done();
       });
     });

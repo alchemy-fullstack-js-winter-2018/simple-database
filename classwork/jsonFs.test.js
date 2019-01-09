@@ -1,5 +1,7 @@
 const fs = require('fs');
-const { readJSON, writeJSON } = require('./jsonFs');
+const { 
+  readJSON, 
+  writeJSON } = require('./jsonFs');
 
 describe('readJSON', () => {
   it('write file created', done => {
@@ -29,10 +31,11 @@ describe('writeJSON', () => {
     writeJSON('./banana', obj, err => {
       expect(err).toBeFalsy();
       
-      //inside callback use readJSON to verify write // call done
+      //inside callback use readJSON to verify write 
       readJSON('./banana', (err, data) => {
         expect(err).toBeFalsy();
         expect(data).toEqual(obj);
+        // call done
         done();
       });
     });

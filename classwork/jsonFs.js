@@ -20,4 +20,7 @@ function writeJSON(pathToFile, obj, callback) {
   });
 }
 
-module.exports = { readJSON, writeJSON };
+module.exports = { 
+  readJSON, 
+  writeJSON
+};
