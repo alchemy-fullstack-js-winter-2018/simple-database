@@ -18,6 +18,14 @@ describe('readJSON', () => {
       });
     });
   });
+  // it('can return an error if not JSON', () => {
+  //   const obj = { name: 'Ollie' };
+  //   const objStr = JSON.stringify(obj);
+  //   readJSON('./jsonfile.txt', (err, data) => {
+  //     expect(err).toBeTruthy();
+  //     expect(data).toEqual(obj);
+  //   });
+  // });
 });
 
 describe('writeJSON', () => {
