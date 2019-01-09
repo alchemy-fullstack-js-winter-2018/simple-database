@@ -27,4 +27,21 @@ describe('Store', () => {
       done();
     });
   });
+
+  it('finds an object by id', done => {
+    //create an object (use same method)
+    store.create({ name: 'uncle bob' }, (err, createdUncle) => {
+      store.findById(createdUncle._id, (err, foundUncle) => {
+        expect(err).toBeFalsy();
+        expect(foundUncle).toEqual({ name: 'uncle bob', _id: createdUncle._id });
+
+        done();
+      });
+    });
+
+  });
+  //after done creating -> findById
+  //after found, check that is the same one that we created
+  //then call done
 });
+
