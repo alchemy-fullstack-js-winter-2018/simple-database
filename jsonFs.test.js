@@ -20,6 +20,15 @@ describe('jsonFs', () => {
                 });
             });
         });
+
+        it('throws an error if the object is not JSON', done => {
+            fs.writeFile('./testData/testNotJSON', 'sladjf', err => {
+               readJSON('./testData/testNotJSON', (err, data) => {
+                expect(err).toBeTruthy(); 
+                done();
+                }); 
+            });
+        });
     });
 
     describe('writeJSON', () => {
@@ -32,6 +41,15 @@ describe('jsonFs', () => {
                     expect(data).toEqual(writtenJSON); 
                     done();
                 });
+            });
+        });
+        
+        it('throws an error if the object is not JSON', done => {
+            fs.writeFile('./testData/testNotJSON', 'sladjf', err => {
+               readJSON('./testData/testNotJSON', (err, data) => {
+                expect(err).toBeTruthy(); 
+                done();
+                }); 
             });
         });
     });
