@@ -25,7 +25,12 @@ describe('database', () => {
     });
   });
   it('should be able to find an item by the idea', () => {
-
+    store.create({ name: 'toy' }, (err, createdItem) => {
+      store.findById(createdItem._id, (err, foundItem) => {
+        expect(err).toBeFalsy();
+        expect(foundItem).toEqual({ name: 'toy', _id: foundItem._id });
+      });
+    });    
   });
 });
 
