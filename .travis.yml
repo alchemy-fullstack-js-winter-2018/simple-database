@@ -1,0 +1,2 @@
+language: node_modules
+node_js: "current"
