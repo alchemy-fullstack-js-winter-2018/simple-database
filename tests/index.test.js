@@ -39,4 +39,14 @@ describe('Store', () => {
       });
     });
   });
+  it('fails if id does not exist', done => {
+    store.findById(123456, (err, foundPerson) => {
+      expect(err).toBeTruthy();
+      expect(!foundPerson).toBeTruthy();
+      done();
+    });
+  });
+
+
+
 });
