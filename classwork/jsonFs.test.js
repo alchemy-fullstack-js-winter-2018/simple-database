@@ -10,10 +10,10 @@ describe('readJSON', () => {
     //2. stringify object with JSON.stringify
     const string = JSON.stringify(tweet);
     //3. write a new file, put the objString in file
-    fs.writeFile('./test', string, err => {
+    fs.writeFile('./classwork/test', string, err => {
       expect(err).toBeFalsy();
       //4. read it
-      readJSON('./test', (err, data) => {
+      readJSON('./classwork/test', (err, data) => {
         expect(err).toBeFalsy();
         expect(data).toEqual(tweet);
         done();
@@ -28,11 +28,11 @@ describe('writeJSON', () => {
     const obj = { name: 'paige' };
 
     //invoke writeJSON(pathToFile, obj, err => {}
-    writeJSON('./banana', obj, err => {
+    writeJSON('./classwork/banana', obj, err => {
       expect(err).toBeFalsy();
       
       //inside callback use readJSON to verify write 
-      readJSON('./banana', (err, data) => {
+      readJSON('./classwork/banana', (err, data) => {
         expect(err).toBeFalsy();
         expect(data).toEqual(obj);
         // call done
