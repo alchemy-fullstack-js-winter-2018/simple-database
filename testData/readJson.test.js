@@ -16,7 +16,17 @@ describe('read function', () => {
         });
       });
     });
+    it('fails if the file does not contain JSON', done => {
+      fs.writeFile('./testData/testNotJSON', 'tenoahusenothu', err => {
+        expect(err).toBeFalsy();
+        readJSON('./testData/testNotJSON', (err, json) => {
+          expect(err).toBeTruthy();
+          done();
+        });
+      });
+    });
   });
+
   describe('writeJson', () => {
     it('writing the file', done => {
       const obj = { name: 'Marcy', age: 22, city: 'Portland' };
@@ -27,8 +37,10 @@ describe('read function', () => {
           expect(err).toBeFalsy();
           expect(data).toEqual(obj);
           done(); 
-        }); 
+        });
       });
     });
-  }); 
+  });
 });
+
+

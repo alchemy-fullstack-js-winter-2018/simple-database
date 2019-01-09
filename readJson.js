@@ -6,10 +6,18 @@ function readJSON(pathFile, callback) {
     if(err) {
       return callback(err);
     }
-      const json = JSON.parse(data);
-      callback(null, json);
-    });
- }
 
- module.exports = { readJSON };
+    // JSON.parse to create a JSON object from data
+    try {
+      const json = JSON.parse(data);
+      // invoke callback(null, json)
+      callback(null, json);
+    }
+    catch(err) {
+      callback(err);
+    }
+  });
+}
+
+module.exports = { readJSON };
 

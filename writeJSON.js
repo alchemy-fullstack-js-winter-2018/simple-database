@@ -1,15 +1,17 @@
 const fs = require('fs');
 
 function writeJSON(pathFile, obj, callback) {
-  const objString = JSON.stringify(obj);
-
-  fs.writeFile(pathFile, objString, err => {
-    if(err) {
-      return callback(err);
-    }
-    // const json = JSON.parse(data);
-    callback();
-  });
+  try {
+    // JSON.stringify my obj
+    const strObject = JSON.stringify(obj);
+    // fs.writeFile to write file to disk
+    fs.writeFile(pathFile, strObject, err => {
+      callback(err);
+    });
+  } 
+  catch(err) {
+    callback(err);
+  }
 }
 
 module.exports = { writeJSON };
