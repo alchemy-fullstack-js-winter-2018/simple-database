@@ -14,6 +14,6 @@ describe('copy function', () => {
         expect(data).toEqual('I am writing');
         done();
       });
-    })
+    });
   });
 });
