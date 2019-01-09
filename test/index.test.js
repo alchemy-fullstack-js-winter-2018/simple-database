@@ -33,4 +33,15 @@ describe('Store', () => {
             done(err);
         });
     });
+
+    it('finds an object by id', done => {
+        store.create({ snack: 'plaintain chips' }, err => {
+            const _id = createdSnack.id;
+            const results = store.findById(_id, err => {
+                expect(err).toBeFalsy();
+                expect(results).toEqual({ snack: 'plaintain chips', id: _id });
+                done(err);
+            });
+        });
+    })
 });
