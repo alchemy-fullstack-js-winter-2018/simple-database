@@ -29,4 +29,14 @@ describe('Store', () => {
       done();
     });
   });
+
+  it('finds an object by id', done => {
+    store.create({ name: 'Bobby' }, (err, person) => {
+      store.findById(person._id, (err, foundPerson) => {
+        expect(err).toBeFalsy();
+        expect(foundPerson).toEqual({ name: 'Bobby', _id: person._id });
+        done();
+      });
+    });
+  });
 });
