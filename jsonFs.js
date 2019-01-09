@@ -12,6 +12,15 @@ function readJSON(path, callback) {
     });
 };
 
+function writeJSON(path, obj, callback) {
+    const str = JSON.stringify(obj);
+    fs.writeFile(path, str, err => {
+        if(err) return callback(err);
+        callback();
+    });
+};
+
 module.exports = {
-    readJSON
+    readJSON,
+    writeJSON
 };

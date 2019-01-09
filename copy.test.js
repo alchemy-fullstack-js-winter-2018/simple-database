@@ -4,6 +4,7 @@ const copy = require('./copy');
 describe('copy function', () => {
     afterEach(() => {
         //clean up copied file
+        
     });
 
     it('test copied file', done => {
