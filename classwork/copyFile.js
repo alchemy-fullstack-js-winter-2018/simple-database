@@ -6,7 +6,3 @@ fs.readFile('./LAB.md', {encoding: 'utf8' }, (err, data) => {
     if (err) throw err;
   });
 });
-
-function copy(src, dst) {
-  //we copy a file
-}
