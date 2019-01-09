@@ -2,7 +2,7 @@ const fs = require('fs');
 
 // this one writes to the console AND creates the txt file
 // const data = new Uint8Array(Buffer.from('Hello Node.js'));
-fs.writeFile('writing.txt', 'I am written\n', (err) => {
+fs.writeFile('writing.txt', 'I am writtennnnn\n', (err) => {
   if(err) throw err;
 });
 

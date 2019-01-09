@@ -19,7 +19,7 @@ describe('jsonFs', () => {
 
   describe('writeJSON', () => {
     it('writes a JSON file to disk', done => {
-      const obj = { name: 'Shirleyy' };
+      const obj = { name: 'Shirleyyyyy' };
       writeJSON('./testData/test', obj, err => {
         expect(err).toBeFalsy();
         readJSON('./testData/test', (err, data) => {
