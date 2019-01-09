@@ -1,0 +1,23 @@
+{
+  "name": "simple-database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "copy.test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/averagegalmarcy/simple-database.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/averagegalmarcy/simple-database/issues"
+  },
+  "homepage": "https://github.com/averagegalmarcy/simple-database#readme",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}
