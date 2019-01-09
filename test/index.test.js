@@ -30,20 +30,26 @@ describe('Store',  () => {
 
   it('finds an object by id', done => {
     store.create({ name: 'chris' }, (err, createdPerson) => {
-      expect(err).toBeFalsy();
+      store.findById(createdPerson._id, (err, foundPerson) => {
+        expect(err).toBeFalsy();
+        expect(foundPerson).toEqual({ name: 'chris' });
+        done();
+      });
+      // 
     });
-    //after done creating -> findbyId
-    store.findById(_id);
+    // //after done creating -> findbyId
+    // 
+    
     //after found check that it is the same one we created
     //then call done
   });
 
-  findById(_id) {
-    const obj = this.store[_id];
-    if(!obj) {
-      throw `No object with _id ${_id}`;
-    }
-    return obj;
-  }
+  // findById(_id) {
+  //   const obj = this.store[_id];
+  //   if(!obj) {
+  //     throw `No object with _id ${_id}`;
+  //   }
+  //   return obj;
+  // }
 
 });
