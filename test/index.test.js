@@ -18,17 +18,19 @@ describe('database', () => {
   beforeEach(() => {
     store = new Store('./testData/store');
   });
-  it('creates an object in my store', () => {
+  it('creates an object in my store', done => {
     store.create({ name: 'toy' }, (err, createdItem) => {
       expect(err).toBeFalsy();
       expect(createdItem).toEqual({ name: 'toy', _id: expect.any(String) });
+      done();
     });
   });
-  it('should be able to find an item by the idea', () => {
+  it('should be able to find an item by the idea', done => {
     store.create({ name: 'toy' }, (err, createdItem) => {
       store.findById(createdItem._id, (err, foundItem) => {
         expect(err).toBeFalsy();
         expect(foundItem).toEqual({ name: 'toy', _id: foundItem._id });
+        done();
       });
     });    
   });
