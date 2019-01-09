@@ -28,4 +28,15 @@ describe('Store', () => {
       done();
     });
   });
+
+  it('finds an object in the store by id', done => {
+    store.create({ movie: 'Homeward Bound' }, (err, createdMovie) => {
+      store.findById((createdMovie._id), (err, foundMovie) => {
+        expect(err).toBeFalsy();
+        expect(foundMovie).toEqual({ movie: 'Homeward Bound', _id: createdMovie._id });
+        done();
+      });
+
+    });
+  });
 });
