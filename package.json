@@ -4,7 +4,7 @@
   "description": "",
   "main": "copyFile.js",
   "scripts": {
-    "test": "npm test"
+    "test": "eslint --fix copyFile.js"
   },
   "repository": {
     "type": "git",
