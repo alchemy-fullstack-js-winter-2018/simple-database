@@ -4,7 +4,8 @@
   "description": "",
   "main": "copyFile.js",
   "scripts": {
-    "test": "eslint --fix copyFile.js"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   "homepage": "https://github.com/caripizza/simple-database#readme",
   "dependencies": {},
   "devDependencies": {
-    "eslint": "^5.12.0"
+    "eslint": "^5.12.0",
+    "jest": "^23.6.0"
   }
 }
