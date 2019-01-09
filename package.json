@@ -4,6 +4,8 @@
   "description": "",
   "main": "copyFile.js",
   "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -21,6 +23,9 @@
   "dependencies": {},
   "devDependencies": {
     "eslint": "^5.12.0",
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.3",
+    "shortid": "^2.2.14"
   }
 }
