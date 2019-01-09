@@ -15,7 +15,7 @@ describe('copy function', () => {
             fs.readFile('./writing.txt', {encoding: 'utf8'}, (err, data) => {
                 expect(err).toBeFalsy();
                 //check that the content is as expected
-                expect(data).toEqual('I am Written')
+                expect(data).toEqual('I am writing!!')
                 //announce that the test is finished
                 done() 
             });
