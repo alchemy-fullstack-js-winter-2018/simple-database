@@ -2,12 +2,12 @@ const fs = require('fs');
 const {
   readJSON,
   writeJSON
-} = require('readJSON');
+} = require('./jsonFs');
 
 describe('jsonFs', () => {
   describe('readJSON', () => {
 
-    it('reads a JSON file from kisk', done => {
+    it('reads a JSON file from disk', done => {
       // Create an object const obj = { name: 'Ryan' };
       const obj = { name: 'Ryan' };
       // stringify object with JSON.stringify(obj);
