@@ -19,6 +19,11 @@
   },
   "homepage": "https://github.com/Zilula/simple-database#readme",
   "dependencies": {
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "shortid": "^2.2.14"
+  },
+  "devDependencies": {
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.3"
   }
 }
