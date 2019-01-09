@@ -35,11 +35,11 @@ describe('Store', () => {
     });
 
     it('finds an object by id', done => {
-        store.create({ snack: 'plaintain chips' }, err => {
-            const _id = createdSnack.id;
-            const results = store.findById(_id, err => {
+        store.create({ snack: 'plaintain chips' }, (err, createdSnack)=> {
+            const id = createdSnack._id;
+            store.findById(id, (err, foundSnack) => {
                 expect(err).toBeFalsy();
-                expect(results).toEqual({ snack: 'plaintain chips', id: _id });
+                expect(foundSnack).toEqual({ snack: 'plaintain chips', _id: id });
                 done(err);
             });
         });
