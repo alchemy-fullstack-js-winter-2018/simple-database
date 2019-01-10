@@ -43,4 +43,39 @@ describe('Store', () => {
       expect(err).toBeTruthy();
     });
   });
+
+  // it('can find an object by id and delete it', done => {
+  //   store.create({ name: 'babs' }, (err, createdPerson) => {
+  //     store.findById(createdPerson._id, (err, foundPerson) => {
+  //       store.findByIdAndDelete(foundPerson._id, (err, removedPerson) => {
+  //         expect(err).toBeFalsy();
+  //         expect(removedPerson).toEqual({ deleted: 1 });
+  //         done();
+  //       });
+  //     });
+  //   });
+  // });
+
+  it('can find all objects tracked by the store', done => {
+    store.create({ name: 'bob ross' }, (err, bob1) => {
+      store.create({ name: 'uncle bob' }, (err, bob2) => {
+        store.create({ name: 'sponge bob' }, (err, bob3) => {
+          store.create({ name: 'billy bob thorton' }, (err, bob4) => {
+            store.create({ name: 'bobby mcfadden' }, (err, bob5) => {
+              store.find((err, listOfItems) => {
+                expect(err).toBeFalsy();
+                expect(listOfItems).toHaveLength(5);
+                expect(listOfItems).toContainEqual(bob1);
+                expect(listOfItems).toContainEqual(bob2);
+                expect(listOfItems).toContainEqual(bob3);
+                expect(listOfItems).toContainEqual(bob4);
+                expect(listOfItems).toContainEqual(bob5);
+                done();
+              });
+            });
+          });
+        });
+      });
+    });       
+  });
 });
