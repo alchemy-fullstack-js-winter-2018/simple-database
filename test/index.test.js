@@ -55,25 +55,25 @@ describe('Store', () => {
   it('finds an object by id and deletes if object is removed', done => {
     store.create({ name: 'uncle bob' }, (err, createdUncle) => {
     
-    store.findByIdAndDelete(createdUncle._id, (err, deletedUncle) => {
-      expect(err).toBeFalsy();
-      expect(deletedUncle).toEqual({ deleted: 1 });
-      done();
+      store.findByIdAndDelete(createdUncle._id, (err, deletedUncle) => {
+        expect(err).toBeFalsy();
+        expect(deletedUncle).toEqual({ deleted: 1 });
+        done();
+      });
+      
+      
     });
-      
-      
-  });
     
-});
+  });
   
-it('find all objects tracked by the store', () => {
+  it('find all objects tracked by the store', done => {
   // create at least 5 objects
     store.create({ item: 1 }, (err, item1) => {
       store.create({ item: 2 }, (err, item2) => {
         store.create({ item: 3 }, (err, item3) => {
           store.create({ item: 4 }, (err, item4) => {
             store.create({ item: 5 }, (err, item5) => {
-              store.find((err, listOfItems => {
+              store.find((err, listOfItems) => {
                 expect(err).toBeFalsy();
                 expect(listOfItems).toHaveLength(5);
                 expect(listOfItems).toContainEqual(item1);
@@ -88,3 +88,5 @@ it('find all objects tracked by the store', () => {
         });
       });
     });
+  });
+});
