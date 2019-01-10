@@ -17,7 +17,6 @@ describe.only('Store', () => {
   });
 
   beforeEach(() => {
-    //tell our app where to save things on our disk
     store = new Store('./testData/store');
   });
 
@@ -25,6 +24,9 @@ describe.only('Store', () => {
     store.create({ movie: 'lord of the rings' }, (err, createdMovie) => {
       expect(err).toBeFalsy();
       expect(createdMovie).toEqual({ movie: 'lord of the rings', _id: expect.any(String) });
+      store.findById(createdMovie._id, (err, foundMovie) => {
+        expect(foundMovie).toEqual(createdMovie);
+      });
       done();
     });
   });
@@ -36,17 +38,35 @@ describe.only('Store', () => {
         expect(foundMovie).toEqual({ movie: 'Homeward Bound', _id: createdMovie._id });
         done();
       });
-
     });
   });
 
-  it('finds an object in the store by id and deletes it', done => {
+  it('can return null if it is passed a nonexisting id', done => {
+    store.findById('4221', (err, foundMovie) => {
+      expect(err).toBeTruthy();
+      expect(foundMovie).toBeNull();
+      done();
+    });
+  });
+
+  it('can find an object in the store by id and delete it', done => {
     store.create({ movie: 'Home Alone' }, (err, createdMovie) => {
       store.findByIdAndDelete(createdMovie._id, (err, deletedMovie) => {
         expect(err).toBeFalsy();
         expect(deletedMovie).toEqual({ deleted: 1 });
-        done();
+        store.findById(createdMovie._id, (err, foundItem) => {
+          expect(err).toBeTruthy();
+          expect(foundItem).toBeNull();
+          done();
+        });
       });
+    });
+  });
+
+  it('can return deleted:0 when given a non-existing id with the delete method', () => {
+    store.findByIdAndDelete('1234', (err, deletedMovie) => {
+      expect(err).toBeTruthy();
+      expect(deletedMovie).toEqual({ deleted: 0 });
     });
   });
 
