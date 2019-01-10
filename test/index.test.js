@@ -43,7 +43,7 @@ describe('Store', () => {
     });
   });
 
-  it('find all objects tracked by the store', () => {
+  it('find all objects tracked by the store', done => {
     // create a bunch of objects (at least 5)
     store.create({ name: 'Carmen' }, (err, createdObj1) => {
       store.create({ name: 'Carly' }, (err, createdObj2) => {
@@ -58,14 +58,25 @@ describe('Store', () => {
                 expect(foundObjects).toContain(createdObj3);
                 expect(foundObjects).toContain(createdObj4);
                 expect(foundObjects).toContain(createdObj5);
+                done();
               });
             });
           });   
         });
       }); 
     });
+  });
 
-  }
-  
-  );
+  it('finds an object by Id and deletes it', () => {
+    store.create({ name: 'Carmen' }, (err, createdObj) => {
+      store.findByIdAndDelete(createdObj._id, (err, result) => {
+        expect(err).toBeFalsy();
+        expect(result).toEqual({ deleted: 1 });
+        store.findById(createdObj._id, (err, foundObj) => {
+          expect(err).toBeTruthy();
+          expect(foundObj).toBeFalsy();
+        });
+      }); 
+    });
+  });
 });
