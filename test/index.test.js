@@ -52,7 +52,23 @@ describe('Store', () => {
     });
   });
 
-  it('finds all objects in the store', () => {
-
+  it('finds all objects in the store', done => {
+    store.create({ item: 1 }, (err, item1) => {
+      store.create({ item: 2 }, (err, item2) => {
+        store.create({ item: 3 }, (err, item3) => {
+          store.create({ item: 4 }, (err, item4) => {
+            store.find((err, listOfItems) => {
+              expect(err).toBeFalsy();
+              expect(listOfItems).toHaveLength(4);
+              expect(listOfItems).toContainEqual(item1);
+              expect(listOfItems).toContainEqual(item2);
+              expect(listOfItems).toContainEqual(item3);
+              expect(listOfItems).toContainEqual(item4);
+              done();
+            });
+          });
+        });
+      });
+    });
   });
 });
