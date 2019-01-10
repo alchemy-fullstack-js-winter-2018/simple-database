@@ -41,4 +41,27 @@ describe('Store', () => {
       });
     });
   });
+  it('find all objects tracked by the store', done => {
+    store.create({ item: 1 }, (err, item_01) => {
+      store.create({ item: 1 }, (err, item_02) => {
+        store.create({ item: 1 }, (err, item_03) => {
+          store.create({ item: 1 }, (err, item_04) => {
+            store.create({ item: 1 }, (err, item_05) => {
+              store.find((err, listOfItems) => {
+                expect(err).toBeFalsy();
+                expect(listOfItems).toHaveLength(5);
+                expect(listOfItems).toContainEqual(item_01);
+                expect(listOfItems).toContainEqual(item_02);
+                expect(listOfItems).toContainEqual(item_03);
+                expect(listOfItems).toContainEqual(item_04);
+                expect(listOfItems).toContainEqual(item_05);
+                done();
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+
 })
