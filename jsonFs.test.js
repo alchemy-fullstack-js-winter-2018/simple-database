@@ -26,16 +26,16 @@ describe('jsonFs', () => {
     });
 
     // it('fails if the file does not contain JSON', done => {
-    //   fs.writeFile('./testData/testNotJSON', 'asdfasdfa')
+    //   fs.writeFile('./testData/testNotJSON')
     // })
   });
 
   describe('writeJSON', () => {
     it('writes JSON to disk', done => {
       // create an object to save const obj = { name: 'ryan' };
-      const obj = { name: 'ryan' };
+      // const obj = { name: 'ryan' };
       // invoke writeJSON(pathToFile, obj, err => {});
-      writeJSON('./testData/testWrite', obj, err => {
+      writeJSON('./testData/testWrite', (obj, err) => {
         // inside callback use readJSON to verify write
         readJSON('./testData/testWrite', (err, data) => {
           expect(err).toBeFalsy();
