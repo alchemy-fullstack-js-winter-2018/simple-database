@@ -4,6 +4,8 @@
   "description": "",
   "main": "readFile.js",
   "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
     "test": "jest",
     "test:watch": "jest --watch"
   },
