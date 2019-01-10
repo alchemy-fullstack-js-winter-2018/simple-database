@@ -40,8 +40,19 @@ describe('Store', () => {
     });
 
   });
-  //after done creating -> findById
-  //after found, check that is the same one that we created
-  //then call done
+
+  it('throws an error if id does not exist', done => {
+    store.findById(987654321, (err, foundUncle) => {
+      expect(err).toBeTruthy();
+      expect(!foundUncle).toBeTruthy();
+      done;
+    });
+  });
+
+  it('finds an object by id and deletes if object is removed', done => {
+    // remove the file of the object with that id
+    // takes a callback that takes an error and an object
+  });
+ 
 });
 
