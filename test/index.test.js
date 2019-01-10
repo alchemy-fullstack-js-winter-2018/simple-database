@@ -52,10 +52,25 @@ describe('store', () => {
     });
 
     it('can return an array of objects from all files', done => {
-        store.create({ tweet: 'hello World' }, (err, createdTweet) => {
-            store.find( () => {
+        store.create({ tweet: 'hello hong kong' }, (err, createdTweet1) => {
+            store.create({ tweet: 'hello tokyo' }, (err, createdTweet2) => {
+                store.create({ tweet: 'hello paris' }, (err, createdTweet3) => {
+                    store.create({ tweet: 'hello PDX' }, (err, createdTweet4) => {
+                        store.create({ tweet: 'hello World' }, (err, createdTweet5) => {
+                            store.find((err, list) => {
+                                expect(err).toBeFalsy();
+                                expect(list).toHaveLength(5);
+                                expect(list).toContainEqual(createdTweet1);
+                                expect(list).toContainEqual(createdTweet2);
+                                expect(list).toContainEqual(createdTweet3);
+                                expect(list).toContainEqual(createdTweet4);
+                                expect(list).toContainEqual(createdTweet5);
 
-
+                                done();
+                            }); 
+                        });
+                    });
+                });
             });
         });
     });
