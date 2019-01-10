@@ -43,33 +43,27 @@ describe('database', () => {
       });
     });
   });
-  // it('should return all an array of all the objects in a directory', done => {
-  //   store.create({ name: 'toy' }, (err, item1) => {
-  //     store.create({ name: 'teddybear' }, (err, item2) => {
-  //       store.create({ name: 'candycane' }, (err, item3) => {
-  //         store.create({ name: 'ball' }, (err, item4) => {
-  //           store.create({ name: 'doll' }, (err, item5) => {
-  //             store.find((err, allItems) => {
-  //               // store.findById(); 
-  //               expect(err).toBeFalsy();
-  //               // expect(allItems._id).toEqual({ name: 'toy' });
-  //               // expect(allItems._id).toEqual({ name: 'toy' });
-  //               // expect(allItems._id).toEqual({ name: 'toy' });
-  //               // expect(allItems._id).toEqual({ name: 'toy' });
-  //               // expect(allItems._id).toEqual({ name: 'toy' });
-  //               expect(allItems).toHaveLength(5);
-  //               expect(item1).toContainEqual(item1);
-  //               expect(item2).toContainEqual(item2);
-  //               expect(item3).toContainEqual(item3);
-  //               expect(item4).toContainEqual(item4);
-  //               expect(item5).toContainEqual(item5);
+  it('should return all an array of all the objects in a directory', done => {
+    store.create({ name: 'toy' }, (err, item1) => {
+      store.create({ name: 'teddybear' }, (err, item2) => {
+        store.create({ name: 'candycane' }, (err, item3) => {
+          store.create({ name: 'ball' }, (err, item4) => {
+            store.create({ name: 'doll' }, (err, item5) => {
+              store.find((err, allItems) => {
+                expect(err).toBeFalsy();
+                expect(allItems).toHaveLength(5);
+                expect(allItems).toContainEqual(item1);
+                expect(allItems).toContainEqual(item2);
+                expect(allItems).toContainEqual(item3);
+                expect(allItems).toContainEqual(item4);
+                expect(allItems).toContainEqual(item5);
 
-  //               done();
-  //             });
-  //           });
-  //         });
-  //       });
-  //     });
-  //   });
+                done();
+              });
+            });
+          });
+        });
+      });
+    });
+  });
 });
-// });
