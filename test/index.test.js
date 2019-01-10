@@ -34,6 +34,19 @@ describe('database', () => {
       });
     });
   });
+  it('should find by ID and update with another obj', done => {
+    store.create({ name: 'toi' }, (err, createdItem) => {
+      store.findByIdAndUpdate(createdItem._id, { name: 'toy' }, (err, updatedItem) => {
+        expect(err).toBeFalsy();
+        expect(updatedItem).toEqual({ name: 'toy', _id: updatedItem._id }); 
+        store.findById(updatedItem._id, (err, newItem) => {
+          expect(err).toBeFalsy(); 
+          expect(newItem).toEqual(updatedItem); 
+        }); 
+        done();
+      }); 
+    });
+  });
   it('should be able to find item and delete', done => {
     store.create({ name: 'toy' }, (err, createdItem) => {
       store.findByIdAndDelete(createdItem._id, (err, deletedItem) => {
