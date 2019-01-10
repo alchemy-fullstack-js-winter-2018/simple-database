@@ -4,5 +4,6 @@ fs.readFile('./Lab.md', { encoding: 'utf8' }, (err, data) => {
   if(err) {
     throw err;
   }
+  return data;
 });
 
