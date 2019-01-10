@@ -30,12 +30,12 @@ describe('Store', () => {
 
   it('finds an object by id', done => {
     // create an object
-    store.create({ name: 'uncle bob' }, (err, createdUncle) => {
+    store.create({ name: 'scratchy' }, (err, createdScratchy) => {
       // after done creating -> findById
-      store.findById(createdUncle._id, (err, foundUncle) => {
+      store.findById(createdScratchy._id, (err, foundScratchy) => {
         // after found check that it is the same one that we created
         expect(err).toBeFalsy();
-        expect(foundUncle).toEqual({ name: 'uncle bob', _id: createdUncle._id });
+        expect(foundScratchy).toEqual({ name: 'scratchy', _id: createdScratchy._id });
         // then call done
         done();
       });
@@ -63,5 +63,10 @@ describe('Store', () => {
       });
     });
   });
-
+// it('deletes an object with an id', done => {
+//   //create an item in
+//   delete that item 
+//   findbyid(itfromcreated item)
+//   expect(foundItem).toBeFalsy()
+// })
 })
