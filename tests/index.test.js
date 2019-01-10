@@ -53,7 +53,6 @@ describe('Store', () => {
     store.create({ name: 'Booboo' }, (err, person) => {
       store.findById(person._id, (err, foundPerson) => {
         store.findByIdAndDelete(foundPerson._id, (err, removedSuccessObject) => {
-          // console.log(removedSuccessObject);
           expect(err).toBeFalsy();
           expect(removedSuccessObject).toEqual({ deleted: 1 });
           done();
@@ -70,7 +69,6 @@ describe('Store', () => {
           store.create({ name: 'Frankie' }, (err, person4) => {
             store.create({ name: 'Potato' }, (err, person5) => {
               store.find((err, listOfItems) => {
-                // console.log(listOfItems);
                 expect(err).toBeFalsy();
                 expect(listOfItems).toHaveLength(5);
                 expect(listOfItems).toContainEqual(person1);

@@ -12,7 +12,7 @@ JavaScript, [Jest](https://www.npmjs.com/package/jest)
 npm i -D jest eslint shortid mkdirp rimraf
 
 ## Run tests
-  "lint": "eslint ."
-  "pretest": "npm run lint"
-  "test": "jest"
-  "test:watch": "jest --watch"
+npm run lint\
+npm run pretest\
+npm run test\
+npm run test:watch

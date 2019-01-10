@@ -1,5 +1,5 @@
 const fs = require('fs');
-const copy = require('./copy');
+const copy = require('../lib/copy');
 
 describe('copy function', () => {
   afterEach(() => {
