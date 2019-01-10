@@ -37,4 +37,8 @@ describe('Store', () => {
       });
     });
   });
+
+  it('finds all objects in the store', () => {
+
+  });
 });
