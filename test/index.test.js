@@ -29,14 +29,10 @@ describe('Store', () => {
   });
 
   it('finds an object by id', done => {
-    // create an object
     store.create({ name: 'motley' }, (err, createdDog) => {
-      // after done creating -> findById
       store.findById(createdDog._id, (err, foundDog) => {
-        // after found check that is it the same on that we created
         expect(err).toBeFalsy();
         expect(foundDog).toEqual({ name: 'motley', _id: createdDog._id });
-        //then call done
         done();
       });
     });
