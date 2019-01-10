@@ -1,0 +1,29 @@
+{
+  "name": "simple-database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "copy.test.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deetolman/simple-database.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deetolman/simple-database/issues"
+  },
+  "homepage": "https://github.com/deetolman/simple-database#readme",
+  "devDependencies": {
+    "eslintrc": "^1.0.6",
+    "jest": "^23.6.0",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.3",
+    "shortid": "^2.2.14"
+  },
+  "dependencies": {}
+}
