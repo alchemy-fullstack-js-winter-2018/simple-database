@@ -1,0 +1,32 @@
+{
+  "name": "simple-database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint .",
+    "pretest": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zilula/simple-database.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zilula/simple-database/issues"
+  },
+  "homepage": "https://github.com/Zilula/simple-database#readme",
+  "dependencies": {
+    "jest": "^23.6.0",
+    "shortid": "^2.2.14"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.3"
+  }
+}
