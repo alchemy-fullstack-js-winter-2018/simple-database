@@ -37,5 +37,10 @@ describe('Store', () => {
       });
     });
   });
-  
+
+  it('throws an error when there is no obj at that id', () => {
+    store.findById(1234, (err) => {
+      expect(err).toBeTruthy();
+    });
+  });
 });
