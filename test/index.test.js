@@ -2,7 +2,7 @@ const mkdirp = require('mkdirp');
 const rimraf = require('rimraf');
 const Store = require('../lib/index');
 
-describe('Store', () => {
+describe.only('Store', () => {
   let store = null;
   beforeEach((done) => {
     rimraf('./testData/store', err => {
@@ -50,21 +50,26 @@ describe('Store', () => {
     });
   });
 
-  // it('can return an array of all the objects in the directory', () => {
-  //   store.create({ movie: 'Air Bud' }, (err, createdMovie) => {
-  //     store.create({ movie: 'Home Alone' }, (err, createdMovie) => {
-  //       store.create({ movie: 'Lion King' }, (err, createdMovie) => {
-  //         store.create({ movie: 'Sword In The Stone'}, (err, createdMovie) => {
-  //           store.create({ movie: 'Little Mermaid'}, (err, createdMovie) => {
-  //             store.find((err, allItems) => {
-  //               expect(err).toBeFalsy();
-  //               expect(allItems).toEqual([{ movie: 'Home Alone' }, { movie: 'Pirates' }, { movie: 'Serendipity' }]);
-
-  //             });
-  //           });
-  //         });
-  //       });
-  //     });
-  //   });
-  // });
+  it('can return an array of all the objects in the directory', done => {
+    store.create({ movie: 'Air Bud' }, (err, item1) => {
+      store.create({ movie: 'Home Alone' }, (err, item2) => {
+        store.create({ movie: 'Lion King' }, (err, item3) => {
+          store.create({ movie: 'Sword In The Stone' }, (err, item4) => {
+            store.create({ movie: 'Little Mermaid' }, (err, item5) => {
+              store.find((err, listOfItems) => {
+                expect(err).toBeFalsy();
+                expect(listOfItems).toHaveLength(5);
+                expect(listOfItems).toContainEqual(item1);
+                expect(listOfItems).toContainEqual(item2);
+                expect(listOfItems).toContainEqual(item3);
+                expect(listOfItems).toContainEqual(item4);
+                expect(listOfItems).toContainEqual(item5);
+                done();
+              });
+            });
+          });
+        });
+      });
+    });
+  });
 });
