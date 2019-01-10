@@ -59,6 +59,7 @@ describe('Store', () => {
                                 expect(listOfItems).toContainEqual(item3);
                                 expect(listOfItems).toContainEqual(item4);
                                 expect(listOfItems).toContainEqual(item5);
+                                done();
                             })
                         })
                     })
