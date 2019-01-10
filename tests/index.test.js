@@ -85,4 +85,17 @@ describe('Store', () => {
     });
   });
 
+  it('updates an existing object', done => {
+    store.create({ name: 'BooBoo' }, (err, createdObject) => {
+      store.findByIdAndUpdate(createdObject._id, { name: 'BamBam' }, (err, updatedObject) => {
+        expect(err).toBeFalsy();
+        expect(updatedObject).toEqual({ name: 'BamBam', _id: createdObject._id });
+        store.findById(createdObject._id, (err, foundObject) => {
+          expect(foundObject).toEqual(updatedObject);
+          done();
+        });
+      });
+    });
+  });
+
 });
