@@ -42,17 +42,61 @@ describe('Store', () => {
   });
 
   it('throws an error if id does not exist', done => {
-    store.findById(987654321, (err, foundUncle) => {
-      expect(err).toBeTruthy();
-      expect(!foundUncle).toBeTruthy();
-      done;
+    store.create({ name: 'uncle bob' }, (err, createdUncle) => {
+      store.findById(9876, (err, foundUncle) => {
+        expect(err).toBeTruthy();
+        expect(!foundUncle).toBeTruthy();
+        done;
+      });
     });
   });
 
+  
   it('finds an object by id and deletes if object is removed', done => {
-    // remove the file of the object with that id
-    // takes a callback that takes an error and an object
+    store.create({ name: 'uncle bob' }, (err, createdUncle) => {
+    
+    store.findByIdAndDelete(createdUncle._id, (err, deletedUncle) => {
+      expect(err).toBeFalsy();
+      expect(deletedUncle).toEqual({ deleted: 1 });
+      done();
+    });
+      
+      
   });
- 
+    
+});
+  
+it('find all objects tracked by the store', () => {
+  // create at least 5 objects
+    store.create({ item: 1 }, (err, item1) => {
+      store.create({ item: 2 }, (err, item2) => {
+        store.create({ item: 3 }, (err, item3) => {
+          store.create({ item: 4 }, (err, item4) => {
+            store.create({ item: 5 }, (err, item5) => {
+              store.find((err, listOfItems => {
+                expect(err).toBeFalsy();
+                expect(listOfItems).toHaveLength(5);
+                expect(listOfItems).toContainEqual(item1);
+                expect(listOfItems).toContainEqual(item2);
+                expect(listOfItems).toContainEqual(item3);
+                expect(listOfItems).toContainEqual(item4);
+                expect(listOfItems).toContainEqual(item5);
+                done();
+
+              })) {
+              };
+            });
+          });
+        });
+      });
+    });
+  
+  //            find
+  //              write the expects
+  //              expect an array with 5 items
+  //              expect an array containing the first item
+  //              expect an array containing the second item
+  //              ... to 5
+  //              done
 });
 
