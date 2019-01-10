@@ -1,4 +1,3 @@
-// const fs = require('fs');
 const mkdirp = require('mkdirp');
 const rimraf = require('rimraf');
 const Store = require('../lib/index');
