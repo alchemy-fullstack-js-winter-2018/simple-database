@@ -2,7 +2,7 @@ const fs = require('fs');
 
 function copy(src, dst, callback) {
   fs.readFile('./LAB.md', { encoding: 'utf8' }, (err, data) => {
-    if (err) {
+    if(err) {
       return callback(err);
     }
     fs.writeFile(dst, data, err => {
@@ -11,7 +11,7 @@ function copy(src, dst, callback) {
       }
       return callback();
     });
-   });
+  });
 }
 
 
