@@ -46,6 +46,26 @@ describe('Store', () => {
 
     it('find all objects tracked by the store', () => {
         //create a bunch of objects (at least 5) nested
+        store.create({ name: 'fluffy' }, (err, createdAnimal) => {
+            store.create({ name: 'snowball' }, (err, createdAnimal) => {
+                store.create({ name: 'grumpy' }, (err, createdAnimal) => {
+                    store.create({ name: 'sleepy'}, (err, createdAnimal) => {
+                        store.create({ name: 'woffy'}, (err, createdAnimal) => {
+                            store.find((err, listOfItems) => {
+                                expect(err).toBeFalsy();
+                                expect(listOfItems).toHaveLength(5);
+                                expect(listOfItems).toContainEqual(item1);
+                                expect(listOfItems).toContainEqual(item2);
+                                expect(listOfItems).toContainEqual(item3);
+                                expect(listOfItems).toContainEqual(item4);
+                                expect(listOfItems).toContainEqual(item5);
+                            })
+                        })
+                    })
+                })
+            })
+        })
+        
         // create ->
             //create ->
                 //find ->
