@@ -74,4 +74,16 @@ describe('Store', () => {
       });
     });
   });
+
+  it('updates an existing object', () => {
+    store.create({ person: 'I am updating an existing person' }, (err, createdPerson) => {
+      store.findByIdAndUpdate(createdPerson._id, { name: 'marty' }, (err, result) => {
+        expect(err).toBeFalsy();
+        expect(result).toEqual({ name: 'megan', _id: createdPerson._id });
+        store.findById(createdPerson._id, (err, foundPerson) => {
+          expect(foundPerson).toEqual(result);
+        });
+      });
+    });
+  });
 });
