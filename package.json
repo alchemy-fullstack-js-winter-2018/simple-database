@@ -5,7 +5,9 @@
   "main": "readFile.js",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "lint": "eslint .",
+    "pretest": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
     "jest": "^23.6.0",
     "mkdirp": "^0.5.1",
     "path": "^0.12.7",
+    "readdir": "^0.1.0",
     "rimraf": "^2.6.3"
   },
   "dependencies": {

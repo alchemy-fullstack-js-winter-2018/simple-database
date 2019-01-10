@@ -55,4 +55,31 @@ describe('Store', () => {
             })
         })
     })
+
+    it('finds all objects tracked by the store', done => {
+        store.create({ snack: 'mango' }, (err, mangoSnack) => {
+            store.create({ snack: 'popcorn' }, (err, popcornSnack) => {
+                store.create({ snack: 'cheese' }, (err, cheeseSnack) => {
+                    store.create({ snack: 'kale chips' }, (err, kaleChipsSnack) => {
+                        store.create({ snack: 'banana' }, (err, bananaSnack) => {
+                            store.find(err, snackArray => {
+                                expect(snackArray).toEqual([
+                                    { snack: 'banana', _id: expect.any(String) },
+                                    { snack: 'cheese', _id: expect.any(String) },
+                                    { snack: 'kale chips', _id: expect.any(String) },
+                                    { snack: 'mango', _id: expect.any(String) },
+                                    { snack: 'popcorn', _id: expect.any(String) }
+                                ]);
+                                expect(snackArray.length).toHaveLength(5);
+                                expect(snackArray[0]).toEqual({ snack: 'banana', _id: expect.any(String) });
+                                expect(cheeseSnack).toEqual({ snack: 'cheese', _id: expect.any(String) });
+                                expect(snackArray).toContain({ snack: 'mango', _id: expect.any(String) });
+                                done();
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
 });
