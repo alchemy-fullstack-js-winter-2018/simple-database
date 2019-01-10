@@ -53,11 +53,11 @@ describe('Store', () => {
               store.find((err, foundObjects) => {
                 expect(err).toBeFalsy();
                 expect(foundObjects).toHaveLength(5);
-                expect(foundObjects).toContain(createdObj1);
-                expect(foundObjects).toContain(createdObj2);
-                expect(foundObjects).toContain(createdObj3);
-                expect(foundObjects).toContain(createdObj4);
-                expect(foundObjects).toContain(createdObj5);
+                expect(foundObjects).toContainEqual(createdObj1);
+                expect(foundObjects).toContainEqual(createdObj2);
+                expect(foundObjects).toContainEqual(createdObj3);
+                expect(foundObjects).toContainEqual(createdObj4);
+                expect(foundObjects).toContainEqual(createdObj5);
                 done();
               });
             });
@@ -67,7 +67,7 @@ describe('Store', () => {
     });
   });
 
-  it('finds an object by Id and deletes it', () => {
+  it('finds an object by Id and deletes it', done => {
     store.create({ name: 'Carmen' }, (err, createdObj) => {
       store.findByIdAndDelete(createdObj._id, (err, result) => {
         expect(err).toBeFalsy();
@@ -75,6 +75,7 @@ describe('Store', () => {
         store.findById(createdObj._id, (err, foundObj) => {
           expect(err).toBeTruthy();
           expect(foundObj).toBeFalsy();
+          done();
         });
       }); 
     });
