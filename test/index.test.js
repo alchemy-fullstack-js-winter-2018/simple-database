@@ -52,6 +52,13 @@ describe('Store', () => {
     });
   });
 
+  it('returns deleted:0 when given an id that does not exist', () => {
+    store.findByIdAndDelete('badId', (err, deletedItem) => {
+      expect(err).toBeTruthy();
+      expect(deletedItem).toEqual({ deleted: 0 });
+    });
+  });
+
   it('finds all objects in the store', done => {
     store.create({ item: 1 }, (err, item1) => {
       store.create({ item: 2 }, (err, item2) => {
