@@ -10,14 +10,18 @@ describe('Store', () => {
         rimraf('./testData/store', err => {
             done(err);
         });
-
     });
 //recreates store directory
-    beforeEach(() => {
+    beforeEach(done => {
         mkdirp('./testData/store', err => {
-
+            done(err);
         });
     });
+    // beforeEach(() => {
+    //     mkdirp('./testData/store', err => {
+
+    //     });
+    // });
 //once removed this is where the new store goes
     beforeEach(() => {
         store = new Store('./testData/store');
@@ -60,19 +64,31 @@ describe('Store', () => {
                                 expect(listOfItems).toContainEqual(item4);
                                 expect(listOfItems).toContainEqual(item5);
                                 done();
-                            })
-                        })
-                    })
-                })
-            })
-        })
-        
-        // create ->
-            //create ->
-                //find ->
-                    // write our real test ( our expects)
-                    //expect an array with 5 items
-                    //expect an array containing the first item
-                    //expect an array containing the second item
-    })
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+
+
+    it('will find an object by id and delete', done => {
+
+        //create an item and wait for it to be created
+
+        store.create({ item: 'I am going to delete' }, (err, createdItem) => {
+            store.findByIdAndDelete(createdItem._id, (err, result) => {
+                //expect to not get an error when deleting
+                expect(err).toBeFalsy();
+                expect(result).toEqual({ deleted: 1 });
+                store.findById(createdItem._id, (err, foundItem) => {
+
+                    expect(err).toBeTruthy();
+                    expect(foundItem).toBeFalsy();
+                    done();
+                });
+            });
+        });
+    });
 });
