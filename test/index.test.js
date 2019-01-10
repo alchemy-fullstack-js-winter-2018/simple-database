@@ -41,31 +41,29 @@ describe('Store', () => {
 
   });
 
-  it('throws an error if id does not exist', done => {
-    store.create({ name: 'uncle bob' }, (err, createdUncle) => {
-      store.findById(9876, (err, foundUncle) => {
-        expect(err).toBeTruthy();
-        expect(!foundUncle).toBeTruthy();
-        done;
-      });
+  it('throws an error if id does not exist', () => {
+    
+    store.findById(1234, (err) => {
+      expect(err).toBeTruthy();
+        
     });
   });
 
-  
-  it('finds an object by id and deletes if object is removed', done => {
+
+  it('finds an object by id and delete if object is removed', done => {
     store.create({ name: 'uncle bob' }, (err, createdUncle) => {
-    
-      store.findByIdAndDelete(createdUncle._id, (err, deletedUncle) => {
-        expect(err).toBeFalsy();
-        expect(deletedUncle).toEqual({ deleted: 1 });
-        done();
+      store.findById(createdUncle._id, (err, foundUncle) => {
+        store.findByIdAndDelete(foundUncle._id, (err, deletedUncle) => {
+          expect(err).toBeFalsy();
+          expect(deletedUncle).toEqual({ deleted: 1 });
+          done();
+        });
+
       });
-      
-      
-    });
-    
+    }); 
   });
-  
+    
+
   it('find all objects tracked by the store', done => {
   // create at least 5 objects
     store.create({ item: 1 }, (err, item1) => {
@@ -89,4 +87,5 @@ describe('Store', () => {
       });
     });
   });
+
 });
