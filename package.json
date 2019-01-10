@@ -1,0 +1,34 @@
+{
+  "name": "simple-database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "copy.test.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "lint": "eslint .",
+    "pretest": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/averagegalmarcy/simple-database.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/averagegalmarcy/simple-database/issues"
+  },
+  "homepage": "https://github.com/averagegalmarcy/simple-database#readme",
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslintrc": "^1.0.6",
+    "jest": "^23.6.0",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.3"
+  },
+  "dependencies": {
+    "mkdir": "0.0.2",
+    "shortid": "^2.2.14"
+  }
+}
