@@ -42,4 +42,30 @@ describe('Store', () => {
       });
     });
   });
+
+  it('find all objects tracked by the store', () => {
+    // create a bunch of objects (at least 5)
+    store.create({ name: 'Carmen' }, (err, createdObj1) => {
+      store.create({ name: 'Carly' }, (err, createdObj2) => {
+        store.create({ name: 'Carla' }, (err, createdObj3) => {
+          store.create({ name: 'Carina' }, (err, createdObj4) => {
+            store.create({ name: 'Carmela' }, (err, createdObj5) => {
+              store.find((err, foundObjects) => {
+                expect(err).toBeFalsy();
+                expect(foundObjects).toHaveLength(5);
+                expect(foundObjects).toContain(createdObj1);
+                expect(foundObjects).toContain(createdObj2);
+                expect(foundObjects).toContain(createdObj3);
+                expect(foundObjects).toContain(createdObj4);
+                expect(foundObjects).toContain(createdObj5);
+              });
+            });
+          });   
+        });
+      }); 
+    });
+
+  }
+  
+  );
 });
