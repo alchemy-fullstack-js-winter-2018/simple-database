@@ -49,20 +49,19 @@ describe('Store', () => {
   });
 
 
-  // it('can find an item by id and delete it', done => {
-  //   store.create({ name: 'Booboo' }, (err, person) => {
-  //     console.log(person._id);
-  //     store.findById(person._id, (err, foundPerson) => {
-  //       console.log(foundPerson._id);
-  //       store.findByIdAndDelete(foundPerson._id, (err, removedSuccessObject) => {
-  //         console.log(removedSuccessObject);
-  //         // expect(err).toBeFalsy();
-  //         expect(removedSuccessObject).toEqual({ deleted: 1 });
-  //         done();
-  //       });
-  //     });
-  //   });
-  // });
+  it('can find an item by id and delete it', done => {
+    store.create({ name: 'Booboo' }, (err, person) => {
+      store.findById(person._id, (err, foundPerson) => {
+        store.findByIdAndDelete(foundPerson._id, (err, removedSuccessObject) => {
+          // console.log(removedSuccessObject);
+          expect(err).toBeFalsy();
+          expect(removedSuccessObject).toEqual({ deleted: 1 });
+          done();
+        });
+      });
+    });
+  });
+
 
   it('can find all objects tracked by the store', done => {
     store.create({ name: 'Bobby' }, (err, person1) => {
