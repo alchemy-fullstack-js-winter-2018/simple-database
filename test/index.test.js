@@ -38,6 +38,17 @@ describe('Store',  () => {
     });
   });
 
+  it('finds an object by id and deletes it', done => {
+    store.create({ name: 'ryan' }, (err, createdPerson) => {
+      store.findByIdAndDelete(createdPerson._id, (err, foundPerson) => {
+        expect(err).toBeFalsy();
+        expect(foundPerson).toEqual({});
+        done();
+      });
+    });
+
+  });
+
   // it('finds all objects tracked by the store', () => {
   //   store.create({ item: 1 }, (err, item1) => {
   //     store.create({ item: 2 }, (err, item2) => {
