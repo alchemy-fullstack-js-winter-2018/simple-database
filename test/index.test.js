@@ -33,7 +33,7 @@ describe('Store', () => {
 
     it('finds an object by id', done => {
         //create an object
-        store.create({ name: 'tommy' }, (err, createdUncle) => {
+        store.create({ name: 'tommy' }, (err, createdAnimal) => {
             
             store.findById(createdAnimal._id, (err, foundAnimal) => {
                 expect(err).toBeFalsy();
@@ -43,4 +43,15 @@ describe('Store', () => {
         });
        
     });
+
+    it('find all objects tracked by the store', () => {
+        //create a bunch of objects (at least 5) nested
+        // create ->
+            //create ->
+                //find ->
+                    // write our real test ( our expects)
+                    //expect an array with 5 items
+                    //expect an array containing the first item
+                    //expect an array containing the second item
+    })
 });
