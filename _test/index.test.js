@@ -1,9 +1,7 @@
 const fs = require('fs');
 //used to mkdirectories 
 const mkdirp = require('mkdirp')
-
 const { Store } = require('../_lib/index.js')
-
 //used to remove files 
 const rimraf = require('rimraf');
 
@@ -33,8 +31,6 @@ describe('Store', () =>{
             expect(err).toBeFalsy();
             expect(createdPerson).toEqual({ name: 'johnny', _id: expect.any(String) });
             done();
-
-
         })
     })
     it('finds an object by id', done => {
@@ -46,6 +42,23 @@ describe('Store', () =>{
             })
         })
     })
-})
+
+    it('finds id and delete', done => {
+        store.create({ name: "sherrys"}, (err, createdName) =>{
+            console.log('expected msg', createdName);
+            store.findAndDelete(createdName._id, (err, foundId) =>{
+                expect(err).toBeFalsy();
+                expect(foundId).toEqual({ deleted: 1 });
+                store.findById(createdName._id, (err, foundItem)=>{
+                    expect(err).toBeTruthy();
+                    expect(foundItem).toBeFalsy();
+                    done();
+                })
+            })
+        })
+    })
     
+})
+
+
 

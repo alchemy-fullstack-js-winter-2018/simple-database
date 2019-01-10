@@ -25,6 +25,8 @@ class Store {
     findById(_id, callback){
         //readJson
         fs.readFile(this.storedFilePath(_id), { encoding: 'utf8' }, (err, data) =>{
+            //DONT forget to throw something in case file cant be found!!
+            if(err) return callback(err);
             const parsedJson = JSON.parse(data);
             callback(err, parsedJson);
             //in case the JSON doesnt read  enclose the above in a try catch block;
