@@ -5,7 +5,7 @@ const Store = require('../lib/index');
 
 
 describe('Store', () => {
-    let store = null; //starts with clean store, remove e
+    let store = null; //starts with clean store
     beforeEach(done => {
         rimraf('./testData/store', err => {
             done(err);
@@ -17,11 +17,6 @@ describe('Store', () => {
             done(err);
         });
     });
-    // beforeEach(() => {
-    //     mkdirp('./testData/store', err => {
-
-    //     });
-    // });
 //once removed this is where the new store goes
     beforeEach(() => {
         store = new Store('./testData/store');
@@ -44,8 +39,7 @@ describe('Store', () => {
                 expect(foundAnimal).toEqual({ name: 'tommy', _id: createdAnimal._id});
                 done();
             });
-        });
-       
+        }); 
     });
 
     it('find all objects tracked by the store', () => {
@@ -72,11 +66,7 @@ describe('Store', () => {
         });
     });
 
-
     it('will find an object by id and delete', done => {
-
-        //create an item and wait for it to be created
-
         store.create({ item: 'I am going to delete' }, (err, createdItem) => {
             store.findByIdAndDelete(createdItem._id, (err, result) => {
                 //expect to not get an error when deleting
