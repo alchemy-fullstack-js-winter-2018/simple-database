@@ -2,7 +2,7 @@ const fs = require('fs');
 const {
     readJSON,
     writeJSON
-} = require('./jsonFS');
+} = require('./jsonFs');
 
 describe('jsonFs', () => {
     describe('readJson', () => {
