@@ -56,6 +56,20 @@ describe('Store', () => {
     });
   });
 
+  it('can find an object by id and update', done => {
+    store.create({ name: 'babs' }, (err, nickName) => {
+      store.findByIdAndUpdate(nickName._id, { name: 'barbara' }, (err, updatedPerson) => {
+        expect(err).toBeFalsy();
+        // expect(updatedPerson._id).toEqual(nickName._id);
+        expect(updatedPerson).toEqual({ name: 'barbara', _id: nickName._id });
+        store.findById(nickName._id, (err, foundPerson) => {
+          expect(foundPerson).toEqual(updatedPerson);
+        });
+        done();
+      });
+    });
+  });
+
   it('can find all objects tracked by the store', done => {
     store.create({ name: 'bob ross' }, (err, bob1) => {
       store.create({ name: 'uncle bob' }, (err, bob2) => {
