@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/averagegalmarcy/simple-database#readme",
   "devDependencies": {
+    "eslint": "^5.12.0",
     "eslintrc": "^1.0.6",
     "jest": "^23.6.0",
     "mkdirp": "^0.5.1",
