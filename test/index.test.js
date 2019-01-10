@@ -38,37 +38,40 @@ describe('Store',  () => {
     });
   });
 
-  it('finds an object by id and deletes it', done => {
-    store.create({ name: 'ryan' }, (err, createdPerson) => {
-      store.findByIdAndDelete(createdPerson._id, (err, foundPerson) => {
-        expect(err).toBeFalsy();
-        expect(foundPerson).toEqual({});
-        done();
+  it('finds all objects tracked by the store', done => {
+    store.create({ item: 1 }, (err, item1) => {
+      store.create({ item: 2 }, (err, item2) => {
+        store.create({ item: 3 }, (err, item3) => {
+          store.create({ item: 4 }, (err, item4) => {
+            store.create({ item: 5 }, (err, item5) => {
+              store.find((err, listOfItems) => {
+                expect(err).toBeFalsy();
+                expect(listOfItems).toHaveLength(5);
+                expect(listOfItems).toContainEqual(item1);
+                expect(listOfItems).toContainEqual(item2);
+                expect(listOfItems).toContainEqual(item3);
+                expect(listOfItems).toContainEqual(item4);
+                expect(listOfItems).toContainEqual(item5);
+                done();
+              });
+            });
+          });
+        });
       });
     });
-
   });
 
-  // it('finds all objects tracked by the store', () => {
-  //   store.create({ item: 1 }, (err, item1) => {
-  //     store.create({ item: 2 }, (err, item2) => {
-  //       store.create({ item: 3 }, (err, item3) => {
-  //         store.create({ item: 4 }, (err, item4) => {
-  //           store.create({ item: 5 }, (err, item5) => {
-  //             store.find((err, listOfItems) => {
-  //               expect(err).toBeFalsy;
-  //               expect(listOfItems).toHaveLength(5);
-  //               expect(listOfItems).toContainEqual(item1);
-  //               expect(listOfItems).toContainEqual(item2);
-  //               expect(listOfItems).toContainEqual(item3);
-  //               expect(listOfItems).toContainEqual(item4);
-  //               expect(listOfItems).toContainEqual(item5);
-  //             });
-  //           });
-  //         });
-  //       });
-  //     });
-  //   });
-  // });
-
+  it('finds an object by id and deletes it', done => {
+    store.create({ name: 'ryan' }, (err, createdPerson) => {
+      store.findByIdAndDelete(createdPerson._id, (err, result) => {
+        expect(err).toBeFalsy();
+        expect(result).toEqual({ deleted: 1 });
+        store.findById(createdPerson._id, (err, foundPerson) => {
+          expect(err).toBeTruthy();
+          expect(foundPerson).toBeFalsy();
+          done();
+        });      
+      });
+    });
+  });
 });
