@@ -46,4 +46,22 @@ describe('Store', () =>{
             })
         })
     })
+  ////////////////////////////////////As soon as i uncomment line 50-62 i get an error messag saying that theres an error on line 28 in in the index which is part of the readFile()
+    // it('finds id and delete', done => {
+    //     store.create({ name: "sherrys"}, (err, createdName) =>{
+    //         store.findAndDelete(createdName._id, (err, foundId) =>{
+    //             expect(err).toBeFalsy();
+    //             expect(foundId).toEqual({ deleted: 1 });
+    //             store.findById(createdName._id, (err, foundItem)=>{
+    //                 expect(err).toBeTruthy();
+    //                 expect(foundItem).toBeFalsy();
+    //                 done();
+    //             })
+    //         })
+    //     })
+    // })
 })
+
+
+    
+// })

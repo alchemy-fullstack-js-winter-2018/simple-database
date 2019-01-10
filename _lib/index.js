@@ -24,14 +24,26 @@ class Store {
     }
     findById(_id, callback){
         //readJson
-        fs.readFile(`${this.rootDir}/${_id}`, { encoding: 'utf8' }, (err, data) =>{
+        fs.readFile(this.storedFilePath(_id), { encoding: 'utf8' }, (err, data) =>{
             const parsedJson = JSON.parse(data);
             callback(err, parsedJson);
             //in case the JSON doesnt read  enclose the above in a try catch block;
         })  
     }
+    
+
+    findAndDelete(_id, callback) {
+        fs.unlink(this.storedFilePath(_id), err => {
+            return callback(err, { deleted: 1 });
+        })
+    }
+    storedFilePath(_id) {
+        return `${this.rootDir}/${_id}`
+      }
 
 }
+
+
 
 module.exports = { 
     Store
