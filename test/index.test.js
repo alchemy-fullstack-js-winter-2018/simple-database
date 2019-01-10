@@ -35,7 +35,7 @@ describe('Store', () => {
     });
 
     it('finds an object by id', done => {
-        store.create({ snack: 'plaintain chips' }, (err, createdSnack)=> {
+        store.create({ snack: 'plaintain chips' }, (err, createdSnack) => {
             const id = createdSnack._id;
             store.findById(id, (err, foundSnack) => {
                 expect(err).toBeFalsy();
@@ -43,5 +43,16 @@ describe('Store', () => {
                 done(err);
             });
         });
+    });
+
+    it('finds an object by id and deletes the object', done => {
+        store.create({ snack: 'almonds' }, (err, createdSnack) => {
+            const id = createdSnack._id;
+            store.findByIdAndDelete(id, (err, foundSnack) => {
+                expect(err).toBeFalsy();
+                expect(foundSnack).toEqual({ deleted: 1 });
+                done(err);
+            })
+        })
     })
 });
