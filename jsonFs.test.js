@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { readJSON, writeJSON } = require('./jsonFS.js');
+const { readJSON, writeJSON } = require('./jsonFs.js');
 
 describe('jsonFs', () => {
   describe('readJSON', () => {
