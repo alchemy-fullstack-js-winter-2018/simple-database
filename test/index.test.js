@@ -21,9 +21,9 @@ describe('Store', () => {
   });
 
   it('creates an object in my store', done => {
-    store.create({ name: 'cat' }, (err, createdAnimal) => {
+    store.create({ name: 'sugar' }, (err, createdCookie) => {
       expect(err).toBeFalsy();
-      expect(createdAnimal).toEqual({ name: 'cat', _id: expect.any(String) });
+      expect(createdCookie).toEqual({ name: 'sugar', _id: expect.any(String) });
       done();
     });
   });
@@ -37,4 +37,5 @@ describe('Store', () => {
       });
     });
   });
+  // it()
 });
