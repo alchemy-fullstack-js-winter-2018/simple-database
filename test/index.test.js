@@ -63,7 +63,7 @@ describe('Store', () => {
 
     it('deletes the file by id', done => {
       store.create({ name: 'Tatiana' }, (err, createdPerson) => {
-        store.findById(createdPerson._id, (err,foundPerson) => {
+        store.findById(createdPerson._id, (err, foundPerson) => {
           store.findAndDelete(createdPerson._id, (err, deletedPerson) => {
             expect(err).toBeFalsy();
             expect(deletedPerson).toEqual({ deleted: 1 });
