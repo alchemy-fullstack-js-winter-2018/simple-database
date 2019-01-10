@@ -2,7 +2,6 @@ const mkdirp = require('mkdirp');
 const rimraf = require('rimraf');
 const Store = require('../lib/index');
 
-
 describe('Store', () => {
     let store = null;
     beforeEach(done => {
@@ -79,13 +78,13 @@ describe('Store', () => {
     });
 
     it('finds an object by id and updates it', done => {
-        store.create({ snack: 'mango' }, (err, createdSnack) => {
-            store.findByIdAndUpdate(createdSnack._id, { snack: 'cashews' }, (err, updatedSnack) => {
+        store.create({ snack: 'mango' }, (err, createdWrongSnack) => {
+            store.findByIdAndUpdate(createdWrongSnack._id, { snack: 'cashews' }, (err, updatedRightSnack) => {
                 expect(err).toBeFalsy();
-                expect(updatedSnack).toEqual({ snack: 'cashews', _id: createdSnack._id });
-                store.findById(createdSnack._id, (err, foundSnack) => {
+                expect(updatedRightSnack).toEqual({ snack: 'cashews', _id: createdWrongSnack._id });
+                store.findById(createdWrongSnack._id, (err, foundSnack) => {
                     expect(err).toBeFalsy();
-                    expect(foundSnack).toEqual(updatedSnack);
+                    expect(foundSnack).toEqual(updatedRightSnack);
                     done();
                 });
             });
