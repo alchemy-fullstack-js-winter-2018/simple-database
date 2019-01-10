@@ -82,21 +82,9 @@ it('find all objects tracked by the store', () => {
                 expect(listOfItems).toContainEqual(item4);
                 expect(listOfItems).toContainEqual(item5);
                 done();
-
-              })) {
-              };
+              });
             });
           });
         });
       });
     });
-  
-  //            find
-  //              write the expects
-  //              expect an array with 5 items
-  //              expect an array containing the first item
-  //              expect an array containing the second item
-  //              ... to 5
-  //              done
-});
-
