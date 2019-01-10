@@ -1,4 +1,3 @@
-const fs = require('fs');
 const mkdirp = require('mkdirp');
 const rimraf = require('rimraf');
 const Store = require('../lib/index');
@@ -10,7 +9,7 @@ describe('Store', () => {
         //clear out all files before you start testing using rimraf node module then call done
         rimraf('./testData/store', err => {
             done(err);
-        })
+        });
     });
 
     beforeEach(done => {
@@ -52,9 +51,9 @@ describe('Store', () => {
                 expect(err).toBeFalsy();
                 expect(foundSnack).toEqual({ deleted: 1 });
                 done(err);
-            })
-        })
-    })
+            });
+        });
+    });
 
     it('finds all objects tracked by the store', done => {
         store.create({ snack: 'mango' }, (err, mangoSnack) => {
