@@ -29,27 +29,28 @@ describe('Store',  () => {
   });
 
   it('finds an object by id', done => {
-    store.create({ name: 'chris' }, (err, createdPerson) => {
+    store.create({ name: 'ryan' }, (err, createdPerson) => {
       store.findById(createdPerson._id, (err, foundPerson) => {
-        expect(err).toBeFalsy();
-        expect(foundPerson).toEqual({ name: 'chris' });
+        expect(err).toBeFalsy(); //
+        expect(foundPerson).toEqual({ name: 'ryan', _id: createdPerson._id });
         done();
       });
-      // 
     });
-    // //after done creating -> findbyId
-    // 
-    
-    //after found check that it is the same one we created
-    //then call done
   });
 
-  // findById(_id) {
-  //   const obj = this.store[_id];
-  //   if(!obj) {
-  //     throw `No object with _id ${_id}`;
-  //   }
-  //   return obj;
-  // }
+  //it('finds all objects tracked by the store', () => {
+  // create a bunch of objec ts (at least 5)
+  //  create ->
+  //    create ->
+  //      create ->
+  //        create ->
+  //          create ->
+  //            find ->
+  //              write our real tests (expects)
+  //              expect an array with 5 items
+  //              expect an array containing item 1
+  //              expect an array containing item 2, ETC...
+  //              done()
+  //});
 
 });
