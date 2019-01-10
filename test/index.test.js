@@ -39,6 +39,26 @@ describe('store', () => {
             });
         });
     });
+
+    it(' can delete an object by id', done => {
+        store.create({ tweet: 'hello World' }, (err, createdTweet) => {
+            store.findByIdAndDelete(createdTweet._id, (err, deletedObject) => {
+                expect(err).toBeFalsy();
+                expect(deletedObject).toEqual({ deleted: 1 });
+                done();
+
+            });
+        });
+    });
+
+    it('can return an array of objects from all files', done => {
+        store.create({ tweet: 'hello World' }, (err, createdTweet) => {
+            store.find( () => {
+
+
+            });
+        });
+    });
 });
 
 
