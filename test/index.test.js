@@ -75,13 +75,14 @@ describe('Store', () => {
     });
   });
 
-  it('updates an existing object', () => {
-    store.create({ person: 'I am updating an existing person' }, (err, createdPerson) => {
-      store.findByIdAndUpdate(createdPerson._id, { name: 'marty' }, (err, result) => {
+  it('updates an existing object', done => {
+    store.create({ name: 'meghan' }, (err, typoCreated) => {
+      store.findByIdAndUpdate(typoCreated._id, { name: 'megan' }, (err, updatedWithoutTypo) => {
         expect(err).toBeFalsy();
-        expect(result).toEqual({ name: 'megan', _id: createdPerson._id });
-        store.findById(createdPerson._id, (err, foundPerson) => {
-          expect(foundPerson).toEqual(result);
+        expect(updatedWithoutTypo).toEqual({ name: 'megan', _id: typoCreated._id });
+        store.findById(typoCreated._id, (err, foundPerson) => {
+          expect(foundPerson).toEqual(updatedWithoutTypo);
+          done();
         });
       });
     });
