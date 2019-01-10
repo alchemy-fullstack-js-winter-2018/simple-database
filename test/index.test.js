@@ -77,4 +77,18 @@ describe('Store', () => {
             });
         });
     });
+
+    it('finds an object by id and updates it', done => {
+        store.create({ snack: 'mango' }, (err, createdSnack) => {
+            store.findByIdAndUpdate(createdSnack._id, { snack: 'cashews' }, (err, updatedSnack) => {
+                expect(err).toBeFalsy();
+                expect(updatedSnack).toEqual({ snack: 'cashews', _id: createdSnack._id });
+                store.findById(createdSnack._id, (err, foundSnack) => {
+                    expect(err).toBeFalsy();
+                    expect(foundSnack).toEqual(updatedSnack);
+                    done();
+                });
+            });
+        });
+    });
 });

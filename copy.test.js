@@ -13,12 +13,12 @@ describe('copy function', () => {
             // test failed if error
             expect(err).toBeFalsy();
            
-            fs.readFile('./writing.txt', {encoding: 'utf8'}, (err, data) => {
+            fs.readFile('./writing.txt', { encoding: 'utf8' }, (err, data) => {
                 expect(err).toBeFalsy();
                 //check that the content is as expected
-                expect(data).toEqual('I am writing!!')
+                expect(data).toEqual('I am writing!!');
                 //announce that the test is finished
-                done() 
+                done(); 
             });
         });
     });

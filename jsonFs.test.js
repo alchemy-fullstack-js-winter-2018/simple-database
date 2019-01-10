@@ -11,6 +11,7 @@ describe('jsonFs', () => {
             const str = JSON.stringify(obj);
             // make a test file and put the str into the file so we can test it
             fs.writeFile('./testData/test', str, err => {
+                expect(err).toBeFalsy();
                 //invoke function to be tested and use above data to test
                 readJSON('./testData/test', (err, data) => {
                     expect(err).toBeFalsy(); 
@@ -23,9 +24,10 @@ describe('jsonFs', () => {
 
         it('throws an error if the object is not JSON', done => {
             fs.writeFile('./testData/testNotJSON', 'sladjf', err => {
-               readJSON('./testData/testNotJSON', (err, data) => {
-                expect(err).toBeTruthy(); 
-                done();
+                expect(err).toBeFalsy();
+                readJSON('./testData/testNotJSON', err => {
+                    expect(err).toBeTruthy(); 
+                    done();
                 }); 
             });
         });
@@ -35,6 +37,7 @@ describe('jsonFs', () => {
         it('writes JSON to disk', done => {
             const obj = { snack: 'mango' };
             writeJSON('./testData/test', obj, err => {
+                expect(err).toBeFalsy();
                 const writtenJSON = obj;
                 readJSON('./testData/test', (err, data) => {
                     expect(err).toBeFalsy();
@@ -46,9 +49,10 @@ describe('jsonFs', () => {
         
         it('throws an error if the object is not JSON', done => {
             fs.writeFile('./testData/testNotJSON', 'sladjf', err => {
-               readJSON('./testData/testNotJSON', (err, data) => {
-                expect(err).toBeTruthy(); 
-                done();
+                expect(err).toBeFalsy();
+                readJSON('./testData/testNotJSON', err => {
+                    expect(err).toBeTruthy(); 
+                    done();
                 }); 
             });
         });
