@@ -5,7 +5,6 @@ fs.readFile('./Lab.md', { encoding: 'utf8' }, (err, data) => {
   
   fs.writeFile('./copyLab.txt', data, err => {
     if(err) throw err;
-    console.log('copied ');
   });
 });
 
