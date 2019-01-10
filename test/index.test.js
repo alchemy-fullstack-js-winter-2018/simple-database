@@ -38,6 +38,20 @@ describe('Store', () => {
     });
   });
 
+  it('deletes an object with that id', done => {
+    store.create({ item: 'deleting item' }, (err, createdItem) => {
+      store.findByIdAndDelete(createdItem._id, (err, result) => {
+        expect(err).toBeFalsy();
+        expect(result).toEqual({ deleted: 1 });
+        store.findById(createdItem._id, (err, foundItem) => {
+          expect(err).toBeTruthy();
+          expect(foundItem).toBeFalsy();
+          done();
+        });
+      });
+    });
+  });
+
   it('finds all objects in the store', () => {
 
   });
