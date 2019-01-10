@@ -10,7 +10,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "test",
+    "test": "jest",
     "test:watch": "jest --watch --runInBand"
   },
   "repository": {
