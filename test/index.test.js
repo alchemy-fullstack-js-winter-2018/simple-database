@@ -44,17 +44,17 @@ describe('Store', () => {
     });
   });
 
-  // it('can find an object by id and delete it', done => {
-  //   store.create({ name: 'babs' }, (err, createdPerson) => {
-  //     store.findById(createdPerson._id, (err, foundPerson) => {
-  //       store.findByIdAndDelete(foundPerson._id, (err, removedPerson) => {
-  //         expect(err).toBeFalsy();
-  //         expect(removedPerson).toEqual({ deleted: 1 });
-  //         done();
-  //       });
-  //     });
-  //   });
-  // });
+  it('can find an object by id and delete it', done => {
+    store.create({ name: 'babs' }, (err, createdPerson) => {
+      store.findById(createdPerson._id, (err, foundPerson) => {
+        store.findByIdAndDelete(foundPerson._id, (err, removedPerson) => {
+          expect(err).toBeFalsy();
+          expect(removedPerson).toEqual({ deleted: 1 });
+          done();
+        });
+      });
+    });
+  });
 
   it('can find all objects tracked by the store', done => {
     store.create({ name: 'bob ross' }, (err, bob1) => {
