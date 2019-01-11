@@ -28,7 +28,7 @@ describe('Store', () => {
     });  
   });
 
-  it('can find an object by id', done => {
+  it('can find an object by id', (done)=> {
     store.create({ name: 'Lilo' }, (err, createdDog) => {
       store.findById(createdDog._id, (err, foundDog) => {
         expect(err).toBeFalsy();
@@ -41,6 +41,21 @@ describe('Store', () => {
   it('throws an error when there is no obj at that id', () => {
     store.findById(1234, (err) => {
       expect(err).toBeTruthy();
+    });
+  });
+
+  it('updates an existing object', (done) => {
+    store.create({ name: 'Flido' }, (err, createdDog) => {
+      store.findByIdAndUpdate(createdDog._id, { name: 'Fido' }, (err, updatedWithoutTypo) => {
+        expect(err).toBeFalsy();
+        expect(updatedWithoutTypo).toEqual({ name: 'Fido', _id: createdDog._id });
+        store.findById(createdDog._id, (err, foundDog) => {
+          expect(foundDog).toEqual(updatedWithoutTypo);
+          done();
+        });
+
+      });
+
     });
   });
 
