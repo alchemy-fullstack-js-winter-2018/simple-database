@@ -80,4 +80,24 @@ describe('Store', () => {
       }); 
     });
   });
+
+  it('updates an existing object', done => {
+    // store.create
+    store.create({ name: 'Carman' }, (err, createdObject) => {
+      // store.findByIdAndUpdate(createdObject._id, updatedObject, callback)
+      // expect updatedObject returned in callback
+      store.findByIdAndUpdate(createdObject._id, { name: 'Carmen' }, (err, result) => {
+        expect(err).toBeFalsy();
+        expect(result).toEqual({ name: 'Carmen', _id: createdObject._id });
+        // store.findById(createdObject._id)
+        store.findById(createdObject._id, (err, updatedObject) => {
+          // expect updated object
+          expect(err).toBeFalsy();
+          expect(updatedObject).toEqual(result);
+          done();
+        }); 
+      });
+      
+    });
+  });
 });
