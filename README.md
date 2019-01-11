@@ -1,5 +1,5 @@
 # Simple Database API
-===================
+
 
 ## This is simple Store database that stores and retrieves objects from the file system.
 
