@@ -1,21 +1,19 @@
 const fs = require('fs');
-//used to mkdirectories 
+//NOTETOSELF:used to mkdirectories 
 const mkdirp = require('mkdirp')
 const { Store } = require('../_lib/index.js')
-//used to remove files 
+//NOTETOSELF:used to remove files 
 const rimraf = require('rimraf');
-
-//mkdir -p 
 
 describe('Store', () =>{
     let store = null;
-    //because we dont want several files on our comp
+    //NOTETOSELF:because we dont want several files on our comp
     beforeEach( done => {
         rimraf('./testData/store', err => {
             done(err);
         })
     })
-    //creates  new dir
+    //NOTETOSELF:creates  new dir
     beforeEach((done) =>{
         mkdirp('./testData/store', err => {
             done(err);
