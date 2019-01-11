@@ -27,5 +27,7 @@
     "rimraf": "^2.6.3",
     "shortid": "^2.2.14"
   },
-  "dependencies": {}
+  "dependencies": {
+    "eslint": "^5.12.0"
+  }
 }
