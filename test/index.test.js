@@ -76,4 +76,19 @@ describe('Store', () => {
       });
     });
   });
+
+  //not working:
+  it('updates an object with an id', done => {
+    store.create({ item: 'I am going to update' }, (err, createdItem) => {
+      store.findByIdAndUpdate(createdItem._id, { item: 'I am updated' }, (err, result) => {
+        expect(err).toBeFalsy();
+        expect(result).toEqual({ _id: createdItem._id, item: 'I am updated' });
+        store.findById(createdItem._id, (err, updatedItem) => {
+          expect(updatedItem).toEqual(result);
+          done();
+        });
+      });
+    });
+  });
+
 });
