@@ -5,7 +5,7 @@
     //                 store.create({ item: 4 }, (err, item4) => {
     //                     store.create({ item: 5 }, (err, item5) => {
     //                         expect(err).toBeFalsey();
-    //                         //NOTETOSELF: expect listOfItems.toHaveLength(5);
+    //                    //NOTETOSELF: expect listOfItems.toHaveLength(5);
     //                         expect(listOfItems).toHaveLength(5);
     //                         expect(listOfItems).toContainEqual(item1);
     //                         expect(listOfItems).toContainEqual(item2);
