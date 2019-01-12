@@ -53,7 +53,8 @@ describe('Store', () =>{
     });
   });
  
-  // it('finds object by id and updates', () => {
+  // PLEASE IGNORE
+  //it('finds object by id and updates', () => {
   //     store.create({name: "johnny"}, (err, wrongName) => {
   //         store.findIdAndUpdate(wrongName._id, { name: "johnson" }, (err, updatedName) =>{
   //             expect(err).toBeFalsy();
