@@ -69,4 +69,23 @@ describe('Store', () => {
 //   findbyid(itfromcreated item)
 //   expect(foundItem).toBeFalsy()
 // })
-})
+
+//Find By ID and Update:
+it('updates an existing object', () => {
+  //call store.create
+  store.create( { name: 'itchy' }, (err, updateItchy) => {
+    // -> store.findByIdAndUpdate(_id, objectToUpdate, callback(error, updatedObject))
+    store.findByIdAndUpdate(updateItchy._id,{ name: 'Scratchy' }, (error, updatedToScratchy) => {
+      //-> -> expect updatedObject returned in callback
+      expect(err).toBeFalsy();
+      expect(updatedToScratchy).toEqual({ name: 'scratchy', _id: updateItchy_.id });
+    //-> -> store.findById(createObject._id)
+    store.findById(updatedToScratchy._id, (err, foundScratchy))
+    //-> -> -> expect updated object
+    expect(foundScratchy).toEqual(updatedToScratchy);
+    done();
+    })
+});
+});
+
+}) 
