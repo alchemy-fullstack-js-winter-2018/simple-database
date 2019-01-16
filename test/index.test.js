@@ -44,19 +44,19 @@ describe('Store', () => {
 
   it('finds all objects tracked by the store', done => {
     // create a bunch of objects (at least 5)
-    store.create({ name: 'personOne' }, (err, createdPersonOne) => {
-      store.create({ name: 'personTwo' }, (err, createdPersonTwo) => {
-        store.create({ name: 'personThree' }, (err, createdPersonThree) => {
-          store.create({ name: 'personFour' }, (err, createdPersonFour) => {
-            store.create({ name: 'personFive' }, (err, createdPersonFive) => {
+    store.create({ item: 1 }, (err, item1) => {
+      store.create({ item: 2 }, (err, item2) => {
+        store.create({ item: 3 }, (err, item3) => {
+          store.create({ item: 4 }, (err, item4) => {
+            store.create({ item: 5 }, (err, item5) => {
               store.find((err, listOfItems) => {
                 expect(err).toBeFalsy();
                 expect(listOfItems).toHaveLength(5);
-                expect(listOfItems).toContainEqual(createdPersonOne);
-                expect(listOfItems).toContainEqual(createdPersonTwo);
-                expect(listOfItems).toContainEqual(createdPersonThree);
-                expect(listOfItems).toContainEqual(createdPersonFour);
-                expect(listOfItems).toContainEqual(createdPersonFive);
+                expect(listOfItems).toContainEqual(item1);
+                expect(listOfItems).toContainEqual(item2);
+                expect(listOfItems).toContainEqual(item3);
+                expect(listOfItems).toContainEqual(item4);
+                expect(listOfItems).toContainEqual(item5);
                 done();
               });
             });
@@ -83,18 +83,19 @@ describe('Store', () => {
     });
   });
   //////////////////////
-  it('updates and existing object', () => {
+  it('updates and existing object', done => {
     // store.create
-    store.create({ item: 'I am going to update an existing object' }, (err, createdObject) => {
+    store.create({ name: 'rayn' }, (err, typoCreated) => {
       // -> store.findByIDAndUpdate(createdObject._id, updatedObject, callback)
-      store.findByIdAndUpdate(createdObject._id, { item: 'I am now updated' }, (err, updatedObject) => {
+      store.findByIdAndUpdate(typoCreated._id, { name: 'ryan' }, (err, updatedWithoutTypo) => {
         // -> -> expect updatedObject returned in callback
         expect(err).toBeFalsy();
-        expect(updatedObject).toEqual({ item: 'I am now updated', _id: createdObject._id });
+        expect(updatedWithoutTypo).toEqual({ name: 'ryan', _id: typoCreated._id });
         // -> -> store.findById(createdObject._id)
-        store.findById(createdObject._id, (err, foundObj) => {
+        store.findById(typoCreated._id, (err, foundObj) => {
           // -> -> -> expect updatedObject
-          expect(foundObj).toEqual(updatedObject);
+          expect(foundObj).toEqual(updatedWithoutTypo);
+          done();
         });
       });
     });
