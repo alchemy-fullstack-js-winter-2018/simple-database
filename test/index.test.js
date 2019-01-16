@@ -3,22 +3,23 @@ const rimraf = require('rimraf');
 const Store = require('../lib/index');
 
 describe('Store', () => {
-  
+  let store = null;
+
   beforeEach(done => {
     rimraf('./testData/store', err => {
       done(err);
     });
   });
-  
+
   beforeEach(done => {
     mkdirp('./testData/store', err => {
       done(err);
     });
   });
-  
+
   beforeEach(() => {
     store = new Store('./testData/store');
-  })
+  });
   it('creates an object in my store', done => {
     store.create({ name: 'itchy' }, (err, createdPerson) => {
       expect(err).toBeFalsy();
@@ -27,21 +28,24 @@ describe('Store', () => {
 
     });
   });
-//Find Object by ID
+  //Find Object by ID
   it('finds an object by id', done => {
-    // create an object
-    store.create({ name: 'scratchy' }, (err, createdPerson) => {
-      // after done creating -> findById
+    store.create({ name: 'Scratchy' }, (err, createdPerson) => {
       store.findById(createdPerson._id, (err, foundPerson) => {
-        // after found check that it is the same one that we created
         expect(err).toBeFalsy();
-        expect(foundPerson).toEqual({ name: 'scratchy', _id: createdPerson._id });
-        // then call done
+        expect(foundPerson).toEqual({ name: 'Scratchy', _id: createdPerson._id });
         done();
       });
     });
   });
-  
+  it('throws error if id does not exist', done => {
+    store.findById(1001, (err, foundPerson) => {
+      expect(err).toBeTruthy();
+      expect(!foundPerson).toBeTruthy();
+      done();
+    });
+  });
+
   it('find all objects tracked by the store', done => {
     store.create({ item: 1 }, (err, item_01) => {
       store.create({ item: 1 }, (err, item_02) => {
@@ -66,39 +70,29 @@ describe('Store', () => {
   });
 
   //Find By ID and Delete:
-it('deletes an object with an id', done => {
-  // create an object
-  store.create({ name: 'scratchy' }, (err, createdScratchy) => {
-    // after done creating -> findById
-    store.findById(createdScratchy._id, (err, foundScratchy) => {
-      // after found check that it is the same one that we created & delete
-      store.findByIdAndDelete(foundScratchy._id, (err, removedScratchy) => {
-      expect(err).toBeFalsy();
-      expect(removedScratchy).toEqual({ deleted: 1 });
-      // then call done
-      done();
+  it('deletes an object with an id', done => {
+    store.create({ name: 'scratchy' }, (err, createdPerson) => {
+      store.findById(createdPerson._id, (err, createdPerson) => {
+        store.findByIdAndDelete(createdPerson._id, (err, removedPerson) => {
+          expect(err).toBeFalsy();
+          expect(removedPerson).toEqual({ deleted: 1 });
+          done();
+        });
       });
     });
-  });  
-})
-
-//Find By ID and Update:
-it('updates an existing object', () => {
-  //call store.create
-  store.create( { name: 'itchy' }, (err, updateItchy) => {
-    // -> store.findByIdAndUpdate(_id, objectToUpdate, callback(error, updatedObject))
-    store.findByIdAndUpdate(updateItchy._id,{ name: 'Scratchy' }, (error, updatedScratchy) => {
-      //-> -> expect updatedObject returned in callback
-      expect(err).toBeFalsy();
-      expect(updatedScratchy).toEqual({ name: 'Scratchy', _id: updateItchy._id });
-    //-> -> store.findById(createObject._id)
-    store.findById(updatedScratchy._id, (err, foundScratchy) => {
-    //-> -> -> expect updated object
-    expect(foundScratchy).toEqual(updatedScratchy);
-    done();
-    });
-    })
   });
-});
 
-}) 
+  //Find By ID and Update:
+  it('updates an existing object', () => {
+    store.create({ name: 'itchy' }, (err, updatePerson) => {
+      store.findByIdAndUpdate(updatePerson._id, { name: 'Scratchy' }, (error, updatedPerson) => {
+        expect(err).toBeFalsy();
+        expect(updatedPerson).toEqual({ name: 'Scratchy', _id: updatePerson._id });
+        store.findById(updatedPerson._id, (err, createdPerson) => {
+          expect(createdPerson).toEqual(updatedPerson);
+        });
+      });
+    });
+  });
+
+}); 
