@@ -71,5 +71,18 @@ describe('Store', () => {
       });
     });
   });
+
+  it('updates the file by id', done => {
+    store.create({ name: 'teonna' }, (err, createdPerson) => {
+      store.findByIdAndUpdate(createdPerson._id, { name: 'tiana' }, (err, updatedPerson) => {
+        expect(err).toBeFalsy;
+        expect(updatedPerson).toEqual({ name: 'tiana', _id: updatedPerson._id });
+        store.findById(createdPerson._id, (err, foundPerson) => {
+          expect(foundPerson).toEqual(updatedPerson);
+          done();
+        });
+      });
+    });
+  });
 });
 
