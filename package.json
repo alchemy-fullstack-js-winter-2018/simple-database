@@ -4,6 +4,7 @@
   "description": "",
   "main": "copy.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -19,7 +20,7 @@
   },
   "homepage": "https://github.com/crperezchica/simple-database#readme",
   "devDependencies": {
-    "eslint": "^5.12.0",
+    "eslint": "^5.12.1",
     "jest": "^23.6.0",
     "mkdirp": "^0.5.1",
     "shortid": "^2.2.14"
