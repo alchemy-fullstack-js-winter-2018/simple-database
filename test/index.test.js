@@ -82,24 +82,24 @@ describe('Store', () => {
     });
   });
 
-  it('will update an existing object', done => {
-    store.create({ item: 'I am going to update' }, (err, createdItem) => {
-      store.findByIdAndUpdate(createdItem._id, { item: 'updated object' }, (err, result) => {
-        expect(err).toBeFalsy();
-        expect(result).toEqual({ item: 'updated object' });
-        store.findById(createdItem._id, (err, updatedItem) => {
-          expect(updatedItem).toEqual({ item: 'updated object' });
-          done(); 
-        });
-      });
-    });
-  });
+  // it('will update an existing object', done => {
+  //   store.create({ name: 'Zoe' }, (err, createdItem) => {
+  //     store.findByIdAndUpdate(createdItem._id, { name: 'Viviana' }, (err, result) => {
+  //       expect(err).toBeFalsy();
+  //       expect(result).toEqual({ name: 'Viviana', _id: createdItem });
+  //       store.findById(createdItem._id, (err, updatedItem) => {
+  //         expect(updatedItem).toEqual({ item: 'updated object' });
+  //         done(); 
+  //       });
+  //     });
+  //   });
+  // });
 
   it('will update', done => {
-    store.create({ name: 'rayn' }, (err, typoCreated) =>{
-      store.findByIdAndUpdate(typoCreated._id, { name: 'ryan' }, (err, updatedWithoutTypo) => {
+    store.create({ name: 'Zoe' }, (err, typoCreated) =>{
+      store.findByIdAndUpdate(typoCreated._id, { name: 'Zoey' }, (err, updatedWithoutTypo) => {
         expect(err).toBeFalsy();
-        expect(updatedWithoutTypo).toEqual({ name: 'ryan', _id: typoCreated._id });
+        expect(updatedWithoutTypo).toEqual({ name: 'Zoey', _id: typoCreated._id });
         store.findById(typoCreated._id, (err, foundObj) => {
           expect(foundObj).toEqual(updatedWithoutTypo);
           done();
