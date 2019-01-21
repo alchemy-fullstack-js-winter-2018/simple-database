@@ -31,9 +31,7 @@ describe('Store', () => {
   });
 
   it('finds an object by id', done => {
-    //create an object
-    store.create({ name: 'tommy' }, (err, createdAnimal) => {
-            
+    store.create({ name: 'tommy' }, (err, createdAnimal) => {     
       store.findById(createdAnimal._id, (err, foundAnimal) => {
         expect(err).toBeFalsy();
         expect(foundAnimal).toEqual({ name: 'tommy', _id: createdAnimal._id });
@@ -43,7 +41,6 @@ describe('Store', () => {
   });
 
   it('find all objects tracked by the store', done => {
-    //create a bunch of objects (at least 5) nested
     store.create({ name: 'fluffy' }, (err, createdAnimal1) => {
       store.create({ name: 'snowball' }, (err, createdAnimal2) => {
         store.create({ name: 'grumpy' }, (err, createdAnimal3) => {
@@ -69,7 +66,6 @@ describe('Store', () => {
   it('will find an object by id and delete', done => {
     store.create({ item: 'I am going to delete' }, (err, createdItem) => {
       store.findByIdAndDelete(createdItem._id, (err, result) => {
-        //expect to not get an error when deleting
         expect(err).toBeFalsy();
         expect(result).toEqual({ deleted: 1 });
         store.findById(createdItem._id, (err, foundItem) => {
@@ -81,20 +77,6 @@ describe('Store', () => {
       });
     });
   });
-
-  // it('will update an existing object', done => {
-  //   store.create({ name: 'Zoe' }, (err, createdItem) => {
-  //     store.findByIdAndUpdate(createdItem._id, { name: 'Viviana' }, (err, result) => {
-  //       expect(err).toBeFalsy();
-  //       expect(result).toEqual({ name: 'Viviana', _id: createdItem });
-  //       store.findById(createdItem._id, (err, updatedItem) => {
-  //         expect(updatedItem).toEqual({ item: 'updated object' });
-  //         done(); 
-  //       });
-  //     });
-  //   });
-  // });
-
   it('will update', done => {
     store.create({ name: 'Zoe' }, (err, typoCreated) =>{
       store.findByIdAndUpdate(typoCreated._id, { name: 'Zoey' }, (err, updatedWithoutTypo) => {
