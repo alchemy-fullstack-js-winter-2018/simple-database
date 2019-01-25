@@ -81,6 +81,16 @@ describe('Store', () => {
     });
   });
 
+  it('does not delete if ID is not found', done => {
+    store.create({ name: 'Frank' }, () => {
+      store.findByIdAndDelete('badId', (err, result) => {
+        expect(err).toBeTruthy();
+        expect(result).toEqual({ deleted: 0 });
+        done();
+      });
+    });
+  });
+
   it('updates an existing object', done => {
     // store.create
     store.create({ name: 'Carman' }, (err, createdObject) => {
